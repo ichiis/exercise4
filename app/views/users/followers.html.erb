@@ -1,4 +1,5 @@
-<h2>Follow Users</h2>
+<h2>Follower Users</h2>
+<% if @users.exists? %>
   <table class='table'>
     <thead>
       <tr>
@@ -13,11 +14,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td>
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image(50,50) %>
-            <% end %>
-          </td>
+          <td><%= image_tag user.get_profile_image(50,50) %></td>
           <td><%= user.name %></td>
           <td>フォロー数:<%= user.followers.count %></td>
           <td>フォロワー数:<%= user.followeds.count %></td>
@@ -26,3 +23,6 @@
       <% end %>
     </tbody>
   </table> 
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
